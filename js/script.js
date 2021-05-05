@@ -34,8 +34,8 @@ function presenteInArray(numero, array) {
 // VARIABILI ------------------------------------
 var bombe = [];
 var tentativi = [];
-var tentativiMassimi = numeroRandomMassimo - 16;
 var numeroRandomMassimo = 100;
+var tentativiMassimi = numeroRandomMassimo - 16;
 
 
 // SCELTA DIFFICOLTA'-------------------------------
