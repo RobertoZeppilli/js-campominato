@@ -98,7 +98,7 @@ while (tentativi.length < tentativiMassimi && gameOver == false) {
         gameOver = true;
         alert("Hai perso, il tuo punteggio è: " + tentativi.length);
 
-    // in caso il numero scelto dall'utente non sia una bomba, push nell'array bombe    
+    // in caso il numero scelto dall'utente non sia una bomba, push nell'array tentativi per non riusare quel numero di nuovo
     } else if (!presenteInArray(sceltaNumero, tentativi)) {
         tentativi.push(sceltaNumero);
     }
