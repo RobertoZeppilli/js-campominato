@@ -34,54 +34,47 @@ function presenteInArray(numero, array) {
 // VARIABILI ------------------------------------
 var bombe = [];
 var tentativi = [];
-var tentativiMassimi = 84;
+var tentativiMassimi = numeroRandomMassimo - 16;
+tentativiMassimi = 5;
+var numeroRandomMassimo = 100;
 
 
-// SCELTA DIFFICOLTA' CON CREAZIONE BOMBE A SECONDA DEL CASO SCELTO-----------
+// SCELTA DIFFICOLTA'-------------------------------
 var bomba;
-var scelta = prompt("Scegli una difficoltà:\n0 - 1 - 2");
+var scelta = parseInt(prompt("Scegli una difficoltà:\n0 - 1 - 2"));
 
 switch (scelta) {
-    case "0":
-        while (bombe.length < 16) {
-
-            bomba = numeroRandom(1, 100);
-            if (!presenteInArray(bomba, bombe)) {
-                bombe.push(bomba);
-            }
-        }
-        console.log(bombe);
+    case 0:
+        numeroRandomMassimo = 100;
+        console.log("Hai scelto la difficoltà:", scelta);
         break;
 
-    case "1":
-        while (bombe.length < 16) {
-
-            bomba = numeroRandom(1, 80);
-            if (!presenteInArray(bomba, bombe)) {
-                bombe.push(bomba);
-            }
-        }
-        console.log(bombe);
+    case 1:
+        numeroRandomMassimo = 80;
+        console.log("Hai scelto la difficoltà:", scelta);
         break;
 
-    case "2":
-        while (bombe.length < 16) {
-
-            bomba = numeroRandom(1, 50);
-            if (!presenteInArray(bomba, bombe)) {
-                bombe.push(bomba);
-            }
-        }
-        console.log(bombe);
+    case 2:
+        numeroRandomMassimo = 50;
+        console.log("Hai scelto la difficoltà:", scelta);
         break;
 
-        // in caso la scelta non sia compresa tra i numeri indicati, richiedere
+    // in caso la scelta non sia compresa tra i numeri indicati, richiedere
     default: do {
-        scelta = prompt("Scegli una difficoltà:\n0 - 1 - 2");
-    } while (scelta != "0" && scelta != "1" && scelta != "2");
+        scelta = parseInt(prompt("Devi scegliere tra una di queste difficoltà:\n0 - 1 - 2"));
+    } while (scelta != 0 && scelta != 1 && scelta != 2);
 
 }
 
+
+// CREAZIONE BOMBE-----------------------------------
+while (bombe.length < 16) {
+
+    bomba = numeroRandom(1, numeroRandomMassimo);
+    if (!presenteInArray(bomba, bombe)) {
+        bombe.push(bomba);
+    }
+}
 
 // GIOCO -------------------------------------------
 var gameOver = false;
@@ -90,6 +83,7 @@ while (tentativi.length < tentativiMassimi && gameOver == false) {
     // richiesta all'utente con limitazioni sul range e sul tipo di dato
     do {
         var sceltaNumero = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"));
+        // console.log(sceltaNumero);
 
     } while (isNaN(sceltaNumero) || sceltaNumero < 1 || sceltaNumero > 100);
 
@@ -98,11 +92,11 @@ while (tentativi.length < tentativiMassimi && gameOver == false) {
         gameOver = true;
         alert("Hai perso, il tuo punteggio è: " + tentativi.length);
 
-    // in caso il numero scelto dall'utente non sia una bomba, push nell'array tentativi per non riusare quel numero di nuovo
+        // in caso il numero scelto dall'utente non sia una bomba, push nell'array tentativi per non riusare quel numero di nuovo
     } else if (!presenteInArray(sceltaNumero, tentativi)) {
         tentativi.push(sceltaNumero);
     }
-    console.log(sceltaNumero, tentativi.length);
+    console.log("Tentativo N°:", tentativi.length, "Numero scelto:", sceltaNumero);
 }
 
 // ALERT VITTORIA -----------------------------------
