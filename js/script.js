@@ -14,10 +14,13 @@
 // con difficoltà 2 => tra 1 e 50
 
 // FUNZIONI -----------------------------------
+
+// funzione per generare un numero random tra un range di numeri stabiliti
 function numeroRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// funzione per controllare se un dato sia presente o meno in un array
 function presenteInArray(numero, array) {
     for (var i = 0; i < array.length; i++) {
 
@@ -33,17 +36,8 @@ var bombe = [];
 var tentativi = [];
 var tentativiMassimi = 84;
 
-// CREAZIONE BOMBE ------------------------------
-// while (bombe.length < 16) {
 
-//     var bomba = numeroRandom(1, 100);
-//     if (!presenteInArray(bomba, bombe)) {
-//         bombe.push(bomba);
-//     }
-// }
-// console.log(bombe);
-
-// SCELTA DIFFICOLTA' CON CREAZIONE BOMBE A SECONDA DEL CASO SCELTO-----------------------------
+// SCELTA DIFFICOLTA' CON CREAZIONE BOMBE A SECONDA DEL CASO SCELTO-----------
 var bomba;
 var scelta = prompt("Scegli una difficoltà:\n0 - 1 - 2");
 
@@ -81,6 +75,7 @@ switch (scelta) {
         console.log(bombe);
         break;
 
+        // in caso la scelta non sia compresa tra i numeri indicati, richiedere
     default: do {
         scelta = prompt("Scegli una difficoltà:\n0 - 1 - 2");
     } while (scelta != "0" && scelta != "1" && scelta != "2");
@@ -88,23 +83,30 @@ switch (scelta) {
 }
 
 
-// GIOCO ---------------------------------------
+// GIOCO -------------------------------------------
 var gameOver = false;
 while (tentativi.length < tentativiMassimi && gameOver == false) {
 
+    // richiesta all'utente con limitazioni sul range e sul tipo di dato
     do {
         var sceltaNumero = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"));
-        console.log(sceltaNumero);
+
     } while (isNaN(sceltaNumero) || sceltaNumero < 1 || sceltaNumero > 100);
 
+    // sconfitta
     if (presenteInArray(sceltaNumero, bombe)) {
         gameOver = true;
         alert("Hai perso, il tuo punteggio è: " + tentativi.length);
 
+    // in caso il numero scelto dall'utente non sia una bomba, push nell'array bombe    
     } else if (!presenteInArray(sceltaNumero, tentativi)) {
         tentativi.push(sceltaNumero);
     }
+    console.log(sceltaNumero, tentativi.length);
 }
-console.log("Il gioco è terminato! Il tuo punteggio è:", tentativi.length);
 
+// ALERT VITTORIA -----------------------------------
+if (tentativi.length == tentativiMassimi) {
+    alert("Complimenti! Il tuo punteggio è: " + tentativi.length);
+}
 
