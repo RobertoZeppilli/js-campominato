@@ -79,9 +79,10 @@ switch (scelta) {
         }
         console.log(bombe);
         break;
+
     default: do {
         scelta = prompt("Scegli una difficoltà:\n0 - 1 - 2");
-    } while (scelta == "0" && scelta == "1" && scelta == "2");
+    } while (scelta != "0" && scelta != "1" && scelta != "2");
 
 }
 
