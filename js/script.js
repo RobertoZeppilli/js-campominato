@@ -44,13 +44,14 @@ var tentativiMassimi = 84;
 // console.log(bombe);
 
 // SCELTA DIFFICOLTA' CON CREAZIONE BOMBE A SECONDA DEL CASO SCELTO-----------------------------
+var bomba;
 var scelta = prompt("Scegli una difficoltà:\n0 - 1 - 2");
 
 switch (scelta) {
     case "0":
         while (bombe.length < 16) {
 
-            var bomba = numeroRandom(1, 100);
+            bomba = numeroRandom(1, 100);
             if (!presenteInArray(bomba, bombe)) {
                 bombe.push(bomba);
             }
@@ -61,7 +62,7 @@ switch (scelta) {
     case "1":
         while (bombe.length < 16) {
 
-            var bomba = numeroRandom(1, 80);
+            bomba = numeroRandom(1, 80);
             if (!presenteInArray(bomba, bombe)) {
                 bombe.push(bomba);
             }
@@ -72,7 +73,7 @@ switch (scelta) {
     case "2":
         while (bombe.length < 16) {
 
-            var bomba = numeroRandom(1, 50);
+            bomba = numeroRandom(1, 50);
             if (!presenteInArray(bomba, bombe)) {
                 bombe.push(bomba);
             }
