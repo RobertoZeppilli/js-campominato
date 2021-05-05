@@ -35,7 +35,6 @@ function presenteInArray(numero, array) {
 var bombe = [];
 var tentativi = [];
 var tentativiMassimi = numeroRandomMassimo - 16;
-tentativiMassimi = 5;
 var numeroRandomMassimo = 100;
 
 
