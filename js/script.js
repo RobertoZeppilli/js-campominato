@@ -38,6 +38,7 @@ var numeroRandomMassimo = 100;
 var tentativiMassimi = numeroRandomMassimo - 16;
 
 
+
 // SCELTA DIFFICOLTA'-------------------------------
 var bomba;
 var scelta = parseInt(prompt("Scegli una difficoltà:\n0 - 1 - 2"));
@@ -73,7 +74,9 @@ while (bombe.length < 16) {
     if (!presenteInArray(bomba, bombe)) {
         bombe.push(bomba);
     }
+
 }
+console.log(bombe);
 
 // GIOCO -------------------------------------------
 var gameOver = false;
@@ -81,10 +84,10 @@ while (tentativi.length < tentativiMassimi && gameOver == false) {
 
     // richiesta all'utente con limitazioni sul range e sul tipo di dato
     do {
-        var sceltaNumero = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"));
+        var sceltaNumero = parseInt(prompt("Inserisci un numero compreso tra 1 e " + numeroRandomMassimo));
         // console.log(sceltaNumero);
 
-    } while (isNaN(sceltaNumero) || sceltaNumero < 1 || sceltaNumero > 100);
+    } while (isNaN(sceltaNumero) || sceltaNumero < 1 || sceltaNumero > numeroRandomMassimo);
 
     // sconfitta
     if (presenteInArray(sceltaNumero, bombe)) {
@@ -94,9 +97,12 @@ while (tentativi.length < tentativiMassimi && gameOver == false) {
         // in caso il numero scelto dall'utente non sia una bomba, push nell'array tentativi per non riusare quel numero di nuovo
     } else if (!presenteInArray(sceltaNumero, tentativi)) {
         tentativi.push(sceltaNumero);
+    } else {
+        alert("Attenzione hai già inserito: " + sceltaNumero);
     }
     console.log("Tentativo N°:", tentativi.length, "Numero scelto:", sceltaNumero);
 }
+
 
 // ALERT VITTORIA -----------------------------------
 if (tentativi.length == tentativiMassimi) {
